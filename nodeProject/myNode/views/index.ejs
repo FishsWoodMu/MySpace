@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title><%- title %></title>
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="../index.html">返回主页</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" id="btnLogout">退出登录</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="login-wrapper">
+        <div class="header"><%- title %></div>
+        <div class="other">
+          <div class="name">用户: <%- username %></div>
+          <div class="time"><%- time %></div>
+        </div>
+        <div class="content">
+          <pre><%- content %></pre>
+        </div>
+        <div class="msg">
+          有问题?
+          <a href="http://wpa.qq.com/msgrd?v=3&uin=26198573&site=qq&menu=10001"
+            >请联系站长</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // // 获取用户名判断是否登录
+      // $.get("http://127.0.0.1/api/username", function (res) {
+      //   console.log(res);
+      //   if (res.status == 200) {
+      //     // alert('登陆成功!欢迎'+res.username)
+      //   } else {
+      //     alert("请先完成登录");
+      //     location.href = "../login.html";
+      //   }
+      // });
+
+      // // 退出登录
+      // $("#btnLogout").click(function () {
+      //   $.post("http://127.0.0.1/api/register", function (res) {
+      //     if (res.status == 200) {
+      //       // 如果 status 为 200，则表示退出成功，重新跳转到登录页面
+      //       location.href = "../login.html";
+      //     }
+      //   });
+      // });
+    </script>
+  </body>
+</html>

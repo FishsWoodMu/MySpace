@@ -1,9 +1,51 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>My Page</title>
-</head>
-<body>
-    <h1>Hello, World!</h1>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic SVG Favicon Badge</title>
+    <link
+      rel="icon"
+      id="dynamic-favicon"
+      href="user.svg"
+      type="image/svg+xml"
+    />
+  </head>
+  <body>
+    <h1>Dynamic SVG Favicon Badge Demo</h1>
+  </body>
+  <script src="">
+    function setFaviconBadge(count) {
+      const favicon = document.getElementById("dynamic-favicon");
+      const originalHref = favicon.getAttribute("href");
+
+      // 创建带有未读计数的新SVG
+      const svgText = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+        <text x="16" y="12" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="white">${count}</text>
+    </svg>`;
+
+      // 可以将SVG转换为DataURL
+      const svgBlob = new Blob([svgText], {
+        type: "image/svg+xml;charset=utf-8",
+      });
+      const url = URL.createObjectURL(svgBlob);
+
+      favicon.setAttribute("href", url);
+
+      // 清理URL对象，当不再需要时
+      setTimeout(() => URL.revokeObjectURL(url), 10000);
+    }
+
+    // 模拟从后端获取未读消息数
+    function fetchUnreadCount() {
+      // 这里替换为你的API调用逻辑
+      return Promise.resolve(Math.floor(Math.random() * 10));
+    }
+
+    // 定时更新favicon未读数
+    setInterval(() => {
+      fetchUnreadCount().then(setFaviconBadge);
+    }, 10000); // 每10秒更新一次，可以根据需求调整
+  </script>
 </html>
