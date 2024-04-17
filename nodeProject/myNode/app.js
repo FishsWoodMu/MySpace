@@ -5,23 +5,27 @@ const fs = require("fs");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const loadRoutes = require("./routes/routeLoader");
+const bodyParser = require("body-parser");
 
 var app = express();
-
-// view engine setup
-// app.set("views", path.join(__dirname, "views"));
-// app.set("view engine", "jade");
+// const port = process.env.port || 8989;
 
 // 视图目录设置
-app.set('views', path.join(__dirname, 'views'));
+app.set("views", path.join(__dirname, "views"));
 // 设置视图引擎
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
+app.engine("html", require("ejs").renderFile);
+app.set("view engine", "html");
 
 app.use(logger("dev"));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 app.use(cookieParser());
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json);
+
 app.use(express.static(path.join(__dirname, "public")));
 
 // 加载并挂载路由

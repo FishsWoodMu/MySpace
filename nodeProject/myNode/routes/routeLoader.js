@@ -1,3 +1,4 @@
+const { log } = require("console");
 const fs = require("fs");
 const path = require("path");
 
@@ -8,7 +9,10 @@ function loadRoutes(app) {
     if (file.endsWith("Routes.js")) {
       const route = require(path.join(routesDir, file));
       const routeName = file.replace("Routes.js", "");
-      app.use(`/api/${routeName}`, route);
+
+      routeName === "index"
+        ? app.use(`/`, route)
+        : app.use(`/api/${routeName}`, route);
     }
   });
 }
