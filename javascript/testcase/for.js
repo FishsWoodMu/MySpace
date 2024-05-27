@@ -59,3 +59,12 @@ console.log(arr1.join(","));
 
 var colors = ["red", "green", "blue", "yellow", "purple"];
 console.log(colors.slice(-3,-1));
+
+var numbers = [1,2,3,4,5,4,3,2,1]; 
+
+var newArr = numbers.filter(item=>item>3);
+// var everyResult = numbers.every(function(item, index, array){ 
+//   console.log(index);
+//   console.log(array,"array123");
+//  return (item > 2); 
+// });
