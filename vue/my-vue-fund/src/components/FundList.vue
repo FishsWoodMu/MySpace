@@ -50,8 +50,21 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import AddFund from "./AddFund.vue";
+import { onMounted } from "vue";
+import axios from 'axios';
 
-const showAddFund = ref(false);
+// 组件挂载时获取数据
+onMounted(() => {
+  axios.get('/api/fund_net_value/020126')
+    .then(response => {
+      console.log('请求成功:', response.data);
+    })
+    .catch(error => {
+      console.error('请求失败:', error);
+      // 特别检查跨域错误
+      if (error.message.includes('CORS') || error.message.includes('cross-origin')) {
+        console.error('跨域错误 detected');
+      }
+    });
+});
 </script>
